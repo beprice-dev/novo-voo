@@ -9,17 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #14181d;
-    --surface: #1b222b;
-    --ink: #ece7dd;
-    --ink-soft: #a6acb3;
-    --accent: #d2a25c;
-    --accent-deep: #efc377;
-    --accent2: #c98f86;
-    --accent2-soft: #3a2a29;
-    --line: #333b44;
-    --card-shadow: rgba(0, 0, 0, 0.4);
-    color-scheme: dark;
+    --paper: #f5f1e9;
+    --surface: #ffffff;
+    --ink: #1e2a38;
+    --ink-soft: #57616c;
+    --accent: #a9793d;
+    --accent-deep: #7c5a2e;
+    --accent2: #a85c52;
+    --accent2-soft: #f5e3e0;
+    --line: #dad2c0;
+    --card-shadow: rgba(30, 42, 56, 0.12);
+    color-scheme: light;
   }
 
   * { box-sizing: border-box; }
@@ -431,15 +431,15 @@
   }
 
   .tile.highlight {
-    background: var(--accent);
+    background: color-mix(in srgb, var(--accent) 30%, var(--surface));
   }
 
   .tile.highlight b {
-    color: var(--paper);
+    color: var(--accent-deep);
   }
 
   .tile.highlight span {
-    color: color-mix(in srgb, var(--paper) 75%, transparent);
+    color: var(--ink);
   }
 
   .note {
@@ -556,80 +556,149 @@
     text-align: center;
   }
 
-  .phone {
-    max-width: 260px;
+  .browser {
+    max-width: 380px;
     margin: 18px auto 0;
     border: 1px solid var(--line);
-    border-radius: 24px;
-    background: var(--surface);
-    padding: 14px;
-    text-align: left;
-  }
-
-  .phone-hero {
-    aspect-ratio: 4 / 3;
     border-radius: 14px;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
-    position: relative;
+    background: var(--surface);
     overflow: hidden;
+    text-align: left;
+    box-shadow: 0 8px 24px var(--card-shadow);
   }
 
-  .phone-hero svg {
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .browser-bar .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+
+  .browser-bar .url {
+    margin-left: 8px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+
+  .browser-nav {
+    padding: 10px 14px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .browser-nav span {
+    color: var(--line);
+    margin: 0 2px;
+  }
+
+  .site-hero {
+    position: relative;
+    aspect-ratio: 16 / 8;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+    color: var(--surface);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+  }
+
+  .site-hero svg {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.45;
   }
 
-  .phone-name {
+  .site-hero-text {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .site-hero-text span {
     font-family: "Newsreader", ui-serif, Georgia, serif;
     font-style: italic;
-    font-size: 1.15rem;
-    margin-top: 14px;
+    font-size: 1.3rem;
   }
 
-  .phone-tag {
+  .site-hero-text small {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.06em;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .site-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+  }
+
+  @media (max-width: 420px) {
+    .site-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .dest {
+    background: var(--surface);
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .dest b {
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .dest small {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    color: var(--ink-soft);
+  }
+
+  .dest.accent {
+    background: color-mix(in srgb, var(--accent2) 14%, var(--surface));
+  }
+
+  .site-brands {
+    display: flex;
+    gap: 8px;
+    padding: 12px 14px 16px;
+    flex-wrap: wrap;
+  }
+
+  .site-brands span {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    margin-top: 3px;
-  }
-
-  .phone-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    margin-top: 14px;
-  }
-
-  .phone-grid .g {
-    aspect-ratio: 1;
-    border-radius: 4px;
-    background: var(--paper);
-    border: 1px solid var(--line);
-  }
-
-  .phone-grid .g.accent {
-    background: var(--accent);
-    opacity: 0.55;
-    border-color: transparent;
-  }
-
-  .phone-badges {
-    display: flex;
-    gap: 6px;
-    margin-top: 14px;
-  }
-
-  .phone-badges span {
-    flex: 1;
-    height: 18px;
-    border-radius: 4px;
-    background: var(--paper);
     border: 1px dashed var(--line);
+    border-radius: 999px;
+    padding: 4px 10px;
   }
 
   .preview-caption {
@@ -705,21 +774,31 @@
 
   <div class="preview">
     <span class="eyebrow">Prévia do formato</span>
-    <div class="phone">
-      <div class="phone-hero">
-        <svg viewBox="0 0 100 75" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0 55 Q 30 20, 55 35 T 100 15" fill="none" stroke="white" stroke-width="1.4" stroke-dasharray="3 3"/>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="url">seunome.com.br</span>
+      </div>
+      <div class="browser-nav">Sobre <span>·</span> Destinos <span>·</span> Mídia Kit <span>·</span> Contato</div>
+      <div class="site-hero">
+        <svg viewBox="0 0 300 130" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-10 95 Q 60 40, 120 75 T 310 35" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="1 5"/>
+          <circle cx="255" cy="30" r="16" fill="none" stroke="currentColor" stroke-width="1"/>
         </svg>
+        <div class="site-hero-text">
+          <span>Seu Nome</span>
+          <small>Criadora de conteúdo · viagens</small>
+        </div>
       </div>
-      <div class="phone-name">Seu Nome</div>
-      <div class="phone-tag">Criadora de conteúdo · viagens</div>
-      <div class="phone-grid">
-        <div class="g"></div><div class="g accent"></div><div class="g"></div>
-        <div class="g accent"></div><div class="g"></div><div class="g accent"></div>
+      <div class="site-grid">
+        <div class="dest"><b>Lisboa</b><small>Set 2026</small></div>
+        <div class="dest accent"><b>Dubai</b><small>Ago 2026</small></div>
+        <div class="dest"><b>Milão</b><small>Jul 2026</small></div>
+        <div class="dest accent"><b>Bali</b><small>Jun 2026</small></div>
       </div>
-      <div class="phone-badges"><span></span><span></span><span></span></div>
+      <div class="site-brands"><span>Marca A</span><span>Marca B</span><span>Marca C</span></div>
     </div>
-    <p class="preview-caption">Estrutura real do site: hero, identidade, grade de conteúdo por destino e marcas em destaque — não um modelo genérico de template.</p>
+    <p class="preview-caption">Estrutura real do site: hero, menu, grade de destinos e marcas em destaque — não um modelo genérico de template.</p>
   </div>
 
   <section id="contexto">

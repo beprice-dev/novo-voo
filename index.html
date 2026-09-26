@@ -15,6 +15,8 @@
     --ink-soft: #a6acb3;
     --accent: #d2a25c;
     --accent-deep: #efc377;
+    --accent2: #c98f86;
+    --accent2-soft: #3a2a29;
     --line: #333b44;
     --card-shadow: rgba(0, 0, 0, 0.4);
     color-scheme: dark;
@@ -63,6 +65,9 @@
 
   .doc-tag {
     align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.7rem;
     letter-spacing: 0.06em;
@@ -71,6 +76,42 @@
     border: 1px solid var(--accent);
     border-radius: 999px;
     padding: 5px 14px;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    50% { opacity: 0.3; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse-dot { animation: none; }
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chips span {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  .chips span:nth-child(2) {
+    border-color: var(--accent2);
+    color: var(--accent2);
   }
 
   header {
@@ -128,7 +169,7 @@
     gap: 16px 24px;
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 14px;
     padding: 18px 20px;
   }
 
@@ -192,7 +233,7 @@
 
   .compare-col {
     border: 1px solid var(--line);
-    border-radius: 4px;
+    border-radius: 14px;
     padding: 18px 20px;
   }
 
@@ -308,8 +349,8 @@
   }
 
   .msg.ok {
-    background: var(--paper);
-    border: 1px solid var(--accent);
+    background: var(--accent2-soft);
+    border: 1px solid var(--accent2);
     align-self: flex-start;
     border-bottom-left-radius: 3px;
   }
@@ -352,7 +393,7 @@
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
   }
 
@@ -481,7 +522,7 @@
   .cta {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 6px;
+    border-radius: 16px;
     padding: 28px 24px;
     margin-top: 16px;
     display: flex;
@@ -602,7 +643,7 @@
   .section-card {
     background: var(--surface);
     border: 1px solid var(--accent);
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 28px 24px;
     border-bottom: 1px solid var(--accent) !important;
     margin-block: 8px;
@@ -626,13 +667,19 @@
 <main>
 
   <header>
-    <div class="doc-tag">Proposta comercial — não é o site final, é a apresentação do projeto</div>
+    <div class="doc-tag"><span class="pulse-dot" aria-hidden="true"></span>Proposta comercial — não é o site final, é a apresentação do projeto</div>
     <div class="wordmark">
       <span class="agency">Price Digital · Marca pessoal e captação de publicidade para criadoras de conteúdo</span>
     </div>
     <h1 class="title">Novo Voo</h1>
     <p class="subtitle lede-main">Você já é uma criadora de conteúdo. Só ainda não está sendo paga por isso.</p>
     <p class="subtitle">Toda cidade nova, todo voo, toda diária de hotel que você posta já é conteúdo de verdade — e já vem com uma pergunta grudada que ninguém faz em voz alta: "de onde vem esse dinheiro". O Novo Voo dá a essa pergunta uma resposta profissional, e transforma o mesmo conteúdo que hoje só gera especulação em uma marca que gera contrato.</p>
+
+    <div class="chips">
+      <span>Comissão só sobre dinheiro novo</span>
+      <span>Sem fidelidade mínima</span>
+      <span>Cancela em 30 dias</span>
+    </div>
 
     <div class="stub">
       <div class="stub-field">

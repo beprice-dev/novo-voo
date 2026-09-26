@@ -1,0 +1,622 @@
+<title>Novo Voo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f1e9;
+    --surface: #ffffff;
+    --ink: #1e2a38;
+    --ink-soft: #57616c;
+    --accent: #a9793d;
+    --accent-deep: #7c5a2e;
+    --line: #dad2c0;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14181d;
+      --surface: #1b222b;
+      --ink: #ece7dd;
+      --ink-soft: #a6acb3;
+      --accent: #d2a25c;
+      --accent-deep: #efc377;
+      --line: #333b44;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #14181d;
+    --surface: #1b222b;
+    --ink: #ece7dd;
+    --ink-soft: #a6acb3;
+    --accent: #d2a25c;
+    --accent-deep: #efc377;
+    --line: #333b44;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    padding-inline: max(20px, calc((100% - 720px) / 2));
+    padding-block: 56px 80px;
+  }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3 {
+    font-family: "Newsreader", ui-serif, Georgia, serif;
+    font-weight: 500;
+    text-wrap: balance;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+
+  /* header */
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 32px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .wordmark .agency {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .wordmark .doc-id {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+  }
+
+  h1.title {
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 52ch;
+  }
+
+  .subtitle.lede-main {
+    color: var(--ink);
+    font-size: 1.2rem;
+    font-weight: 500;
+    max-width: 48ch;
+  }
+
+  .stub {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+
+  .stub-field .eyebrow { margin-bottom: 4px; }
+
+  .stub-field .value {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.95rem;
+  }
+
+  /* sections */
+
+  section {
+    padding-block: 40px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+
+  section p {
+    color: var(--ink);
+    max-width: 62ch;
+  }
+
+  section p + p { margin-top: 12px; }
+
+  .lede {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  /* compare */
+
+  .compare {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .compare { grid-template-columns: 1fr; }
+  }
+
+  .compare-col {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+
+  .compare-col.highlight {
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+
+  .compare-head {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .compare-col.highlight .compare-head {
+    color: var(--accent-deep);
+  }
+
+  .compare-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  .compare-col.highlight ul {
+    color: var(--ink);
+  }
+
+  /* scope list */
+
+  .scope {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .scope li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .scope li::before {
+    content: "→";
+    color: var(--accent);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  .scope strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  .scope span.desc {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  /* pricing table */
+
+  .pricing {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 18px 20px;
+    align-items: baseline;
+  }
+
+  .price-row + .price-row {
+    border-top: 1px solid var(--line);
+  }
+
+  .price-row .label {
+    font-weight: 500;
+  }
+
+  .price-row .detail {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-top: 2px;
+  }
+
+  .price-row .amount {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 1.15rem;
+    white-space: nowrap;
+  }
+
+  .price-row.total {
+    background: var(--surface);
+  }
+
+  .price-row.total .amount {
+    color: var(--accent-deep);
+    font-size: 1.3rem;
+  }
+
+  .note {
+    margin-top: 14px;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  /* timeline */
+
+  .timeline {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .leg {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    padding-block: 16px;
+    position: relative;
+  }
+
+  .leg:not(:last-child) {
+    border-bottom: 1px dotted var(--line);
+  }
+
+  .leg-code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    padding-top: 3px;
+  }
+
+  .leg h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: "Work Sans", sans-serif;
+    margin-bottom: 4px;
+  }
+
+  .leg p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* terms */
+
+  .terms {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .terms li {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    font-size: 0.95rem;
+  }
+
+  .terms li .term-label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    padding-top: 2px;
+  }
+
+  @media (max-width: 480px) {
+    .terms li { grid-template-columns: 1fr; gap: 2px; }
+    .leg { grid-template-columns: 44px 1fr; }
+  }
+
+  /* cta */
+
+  .cta {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 28px 24px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .cta h2 { font-size: 1.3rem; }
+
+  .cta .fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .cta .field .eyebrow { margin-bottom: 4px; }
+
+  .cta .field .value {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+</style>
+
+<main>
+
+  <header>
+    <div class="wordmark">
+      <span class="agency">Price Digital · Marca pessoal e captação de publicidade para criadoras de conteúdo</span>
+    </div>
+    <h1 class="title">Novo Voo</h1>
+    <p class="subtitle lede-main">Você já é uma criadora de conteúdo. Só ainda não está sendo paga por isso.</p>
+    <p class="subtitle">Toda cidade nova, todo voo, toda diária de hotel que você posta já é conteúdo de verdade — e já vem com uma pergunta grudada que ninguém faz em voz alta: "de onde vem esse dinheiro". O Novo Voo dá a essa pergunta uma resposta profissional, e transforma o mesmo conteúdo que hoje só gera especulação em uma marca que gera contrato.</p>
+
+    <div class="stub">
+      <div class="stub-field">
+        <div class="eyebrow">Preparada para</div>
+        <div class="value">[Nome da cliente]</div>
+      </div>
+      <div class="stub-field">
+        <div class="eyebrow">Data</div>
+        <div class="value">26/09/2026</div>
+      </div>
+      <div class="stub-field">
+        <div class="eyebrow">Válida até</div>
+        <div class="value">10/10/2026</div>
+      </div>
+      <div class="stub-field">
+        <div class="eyebrow">Responsável</div>
+        <div class="value">Price Digital</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="contexto">
+    <span class="eyebrow">A pergunta que ninguém faz alto</span>
+    <h2>Não existe rede social. Existe rede comercial.</h2>
+    <p class="lede">Todo mundo ali está vendendo alguma versão de si — felicidade, sucesso, estilo de vida — sem receber um centavo por isso. A diferença é que, hoje, quem lucra de verdade com o seu conteúdo é a própria plataforma. Você paga o preço em forma de julgamento e suposição — de família, de seguidor, de gente que nunca vai perguntar de frente — e não vê nada disso voltar pra você. Pra quem construiu essa vida sozinha e ainda tem que provar que venceu, essa conta não fecha.</p>
+    <p>Você já tem o material: o deslocamento constante, as cidades, o estilo de vida que a maioria só posta uma vez por ano. O que falta não é conteúdo — é a estrutura profissional por trás dele. O Novo Voo entrega essa estrutura: site autoral, identidade visual consistente e uma rotina editorial que dá ao seu conteúdo uma explicação que se sustenta sozinha, porque é verdadeira — você é uma criadora de marca, com contrato e com marcas pagando por isso.</p>
+    <p>A pergunta que importa não é mais "de onde vem esse dinheiro". É: hoje, o que você ganha com o seu estilo de vida além de dor de cabeça e suposição alheia?</p>
+  </section>
+
+  <section id="custo">
+    <span class="eyebrow">Antes de decidir</span>
+    <h2>O que muda, de verdade</h2>
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-head">Seguindo como está</div>
+        <ul>
+          <li>Conteúdo sem contrato por trás — só posta e espera curtida.</li>
+          <li>Toda viagem nova reabre a mesma pergunta não dita.</li>
+          <li>Quem lucra com sua atenção é a plataforma, não você.</li>
+        </ul>
+      </div>
+      <div class="compare-col highlight">
+        <div class="compare-head">Com o Novo Voo</div>
+        <ul>
+          <li>Site, identidade e mídia kit — o mesmo conteúdo, com estrutura profissional.</li>
+          <li>A resposta pra "de onde vem isso" já está pronta e é verdadeira.</li>
+          <li>Marca fechando contrato paga você, não só o algoritmo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="escopo">
+    <span class="eyebrow">O que está incluso</span>
+    <h2>Escopo do programa</h2>
+    <ul class="scope">
+      <li>
+        <div>
+          <strong>Site autoral</strong>
+          <span class="desc">Domínio próprio, identidade visual e portfólio fotográfico organizado por destino.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Calendário editorial mensal</strong>
+          <span class="desc">Linha de conteúdo planejada com antecedência, alinhada ao seu roteiro real de viagens.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Mídia kit para marcas</strong>
+          <span class="desc">Documento de apresentação com métricas, portfólio e formatos de parceria, pronto pra ser enviado.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Prospecção ativa de publicidade</strong>
+          <span class="desc">Abordagem de marcas para publi e patrocínio — feita pela Price Digital em seu nome.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Contratação para empresas</strong>
+          <span class="desc">Aba do site para ativações de marca e presença em eventos corporativos, fechadas via CNPJ e contrato.</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section id="investimento">
+    <span class="eyebrow">Condições comerciais</span>
+    <h2>Investimento</h2>
+    <div class="pricing">
+      <div class="price-row">
+        <div>
+          <div class="label">Implantação</div>
+          <div class="detail">Site, identidade visual e primeiro lote de conteúdo. 50% no início, 50% na entrega.</div>
+        </div>
+        <div class="amount">R$ 3.000</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="label">Gestão mensal</div>
+          <div class="detail">Calendário editorial, atualização do site e prospecção contínua de marcas.</div>
+        </div>
+        <div class="amount">R$ 900 /mês</div>
+      </div>
+      <div class="price-row total">
+        <div>
+          <div class="label">Comissão sobre publi fechada</div>
+          <div class="detail">Só sobre contratos novos trazidos pela Price Digital — nunca sobre renda que já é sua.</div>
+        </div>
+        <div class="amount">25%</div>
+      </div>
+    </div>
+    <p class="note">Sem fidelidade mínima na gestão mensal. Cancelamento com 30 dias de aviso.</p>
+  </section>
+
+  <section id="cronograma">
+    <span class="eyebrow">Roteiro de entrega</span>
+    <h2>Cronograma</h2>
+    <div class="timeline">
+      <div class="leg">
+        <div class="leg-code mono">S1</div>
+        <div>
+          <h3>Embarque</h3>
+          <p>Briefing, definição de posicionamento e assinatura do contrato.</p>
+        </div>
+      </div>
+      <div class="leg">
+        <div class="leg-code mono">S2</div>
+        <div>
+          <h3>Decolagem</h3>
+          <p>Apresentação da demonstração do site para aprovação.</p>
+        </div>
+      </div>
+      <div class="leg">
+        <div class="leg-code mono">S3–4</div>
+        <div>
+          <h3>Cruzeiro</h3>
+          <p>Produção do primeiro lote de conteúdo e finalização do mídia kit.</p>
+        </div>
+      </div>
+      <div class="leg">
+        <div class="leg-code mono">M2</div>
+        <div>
+          <h3>Novo destino</h3>
+          <p>Início da prospecção ativa de marcas e parcerias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="termos">
+    <span class="eyebrow">Letras miúdas, sem letra miúda</span>
+    <h2>Termos</h2>
+    <ul class="terms">
+      <li><span class="term-label mono">ESCOPO</span><span>A Price Digital cuida de marca, conteúdo e captação de publicidade. Sua atividade atual, seja ela qual for, não faz parte deste contrato e não é gerida, indicada ou mencionada pela agência.</span></li>
+      <li><span class="term-label mono">COMISSÃO</span><span>Cobrada só sobre publicidade e patrocínio novos, fechados por indicação da Price Digital.</span></li>
+      <li><span class="term-label mono">PAGAMENTO</span><span>Pix ou transferência, com nota fiscal emitida pela Price Digital.</span></li>
+      <li><span class="term-label mono">VIGÊNCIA</span><span>Sem prazo mínimo de fidelidade. Contrato mensal, cancelável por qualquer das partes com 30 dias de aviso.</span></li>
+    </ul>
+  </section>
+
+  <section id="proximo-passo" style="border-bottom: none;">
+    <span class="eyebrow">Próximo passo</span>
+    <h2>Vamos decolar?</h2>
+    <div class="cta">
+      <p style="margin:0; color: var(--ink-soft);">Responda esta proposta para agendarmos o briefing inicial e travarmos a data de apresentação da demo.</p>
+      <div class="fields">
+        <div class="field">
+          <div class="eyebrow">Contato</div>
+          <div class="value">[WhatsApp da agência]</div>
+        </div>
+        <div class="field">
+          <div class="eyebrow">E-mail</div>
+          <div class="value">pricedigital.contato@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Price Digital</span>
+    <span>Proposta PD-NV-001 · confidencial</span>
+  </footer>
+
+</main>

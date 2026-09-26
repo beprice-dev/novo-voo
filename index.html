@@ -610,32 +610,22 @@
 
   .site-hero {
     aspect-ratio: 16 / 8;
-    background: repeating-linear-gradient(
-      135deg,
-      var(--paper),
-      var(--paper) 10px,
-      color-mix(in srgb, var(--line) 40%, var(--paper)) 10px,
-      color-mix(in srgb, var(--line) 40%, var(--paper)) 11px
-    );
-    color: var(--ink-soft);
+    background-size: cover;
+    background-position: center;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    align-items: flex-end;
+    padding: 10px;
     border-bottom: 1px dashed var(--line);
   }
 
-  .site-hero svg {
-    width: 30px;
-    height: 30px;
-    opacity: 0.7;
-  }
-
-  .hero-label {
+  .hero-tag {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.04em;
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: rgba(20, 20, 20, 0.55);
+    padding: 4px 9px;
+    border-radius: 999px;
   }
 
   .site-heading {
@@ -792,13 +782,8 @@
         <span class="url">seunome.com.br</span>
       </div>
       <div class="browser-nav">Sobre <span>·</span> Destinos <span>·</span> Mídia Kit <span>·</span> Contato</div>
-      <div class="site-hero">
-        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-          <rect x="4" y="6" width="40" height="36" rx="3" stroke="currentColor" stroke-width="1.6"/>
-          <circle cx="16" cy="17" r="3.2" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M6 34 L18 22 L26 30 L33 23 L42 32" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-        </svg>
-        <span class="hero-label">Foto sua ou paisagem entra aqui</span>
+      <div class="site-hero" style="background-image:url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&amp;q=60')">
+        <span class="hero-tag">Foto ilustrativa — a sua entra no lugar</span>
       </div>
       <div class="site-heading">
         <span>Seu Nome</span>
@@ -882,6 +867,12 @@
         <div>
           <strong>Contratação para empresas</strong>
           <span class="desc">Aba do site para ativações de marca e presença em eventos corporativos, fechadas via CNPJ e contrato.</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <strong>Home dinâmica por destino</strong>
+          <span class="desc">A capa muda de acordo com a viagem em destaque — igual plataformas de streaming fazem com o catálogo.</span>
         </div>
       </li>
     </ul>

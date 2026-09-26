@@ -263,52 +263,140 @@
     font-size: 0.95rem;
   }
 
-  /* pricing table */
+  /* chat mockup */
 
-  .pricing {
+  .chat {
     margin-top: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .msg {
+    max-width: 84%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .msg small {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+  }
+
+  .msg.ag {
+    background: var(--paper);
     border: 1px solid var(--line);
-    border-radius: 4px;
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+  }
+
+  .msg.me {
+    background: color-mix(in srgb, var(--accent) 22%, var(--surface));
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+  }
+
+  .msg.ok {
+    background: var(--paper);
+    border: 1px solid var(--accent);
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+  }
+
+  /* trust grid */
+
+  .yours {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    border-top: 2px solid var(--ink);
+  }
+
+  .yours div {
+    padding: 16px 16px 16px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .yours h3 {
+    font-size: 1rem;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 600;
+  }
+
+  .yours p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  /* price tiles */
+
+  .tiles {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
     overflow: hidden;
   }
 
-  .price-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-    padding: 18px 20px;
-    align-items: baseline;
+  @media (max-width: 560px) {
+    .tiles { grid-template-columns: 1fr; }
   }
 
-  .price-row + .price-row {
-    border-top: 1px solid var(--line);
-  }
-
-  .price-row .label {
-    font-weight: 500;
-  }
-
-  .price-row .detail {
-    color: var(--ink-soft);
-    font-size: 0.9rem;
-    margin-top: 2px;
-  }
-
-  .price-row .amount {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 1.15rem;
-    white-space: nowrap;
-  }
-
-  .price-row.total {
+  .tile {
     background: var(--surface);
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
-  .price-row.total .amount {
-    color: var(--accent-deep);
-    font-size: 1.3rem;
+  .tile b {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: clamp(1.5rem, 5vw, 1.9rem);
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tile b small {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  .tile span {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .tile.highlight {
+    background: var(--accent);
+  }
+
+  .tile.highlight b {
+    color: var(--paper);
+  }
+
+  .tile.highlight span {
+    color: color-mix(in srgb, var(--paper) 75%, transparent);
   }
 
   .note {
@@ -657,30 +745,44 @@
     </ul>
   </section>
 
+  <section id="rotina">
+    <span class="eyebrow">Como funciona no dia a dia</span>
+    <h2>A pauta chega, você grava, a gente cuida do resto</h2>
+    <div class="chat" role="img" aria-label="Exemplo de conversa entre a Price Digital e a criadora mostrando pauta, envio, ajuste e publicação">
+      <div class="msg ag"><small>PRICE DIGITAL · SEG 09:14</small>Pauta da semana: 3 fotos no embarque e 1 vídeo curto do quarto do hotel. Referência de enquadramento em anexo.</div>
+      <div class="msg me"><small>VOCÊ · SEG 18:30</small>Mandei em qualidade original, separado por pasta ✈️</div>
+      <div class="msg ag"><small>PRICE DIGITAL · SEG 19:05</small>Aprovado! Ajustei a legenda pra bater com o tom do site e agendei pra amanhã, horário de pico.</div>
+      <div class="msg ok"><small>PRICE DIGITAL · TER 11:20</small>Publicado no site e no mídia kit. Uma marca de mala já perguntou sobre publi essa semana — te aviso assim que fechar.</div>
+    </div>
+    <p class="note">Exemplo ilustrativo do fluxo real. Tudo passa por aprovação sua antes de ir ao ar.</p>
+  </section>
+
+  <section id="controle">
+    <span class="eyebrow">O que continua sendo seu</span>
+    <h2>Você no controle, sempre</h2>
+    <div class="yours">
+      <div><h3>Sua atividade atual</h3><p>Não é gerida, indicada ou mencionada pela Price Digital, sob nenhuma circunstância.</p></div>
+      <div><h3>Seu dinheiro</h3><p>Marcas fecham contrato com nota fiscal transparente. Comissão só sobre publi nova, nunca sobre o que já é seu.</p></div>
+      <div><h3>Sua agenda</h3><p>Sugerimos pauta e horário. Você decide o que gravar e quando.</p></div>
+      <div><h3>Sua imagem</h3><p>O material fica com você. Só vai ao ar o que for aprovado por você antes.</p></div>
+    </div>
+  </section>
+
   <section id="investimento">
     <span class="eyebrow">Condições comerciais</span>
     <h2>Investimento</h2>
-    <div class="pricing">
-      <div class="price-row">
-        <div>
-          <div class="label">Implantação</div>
-          <div class="detail">Site, identidade visual e primeiro lote de conteúdo. 50% no início, 50% na entrega.</div>
-        </div>
-        <div class="amount">R$ 3.000</div>
+    <div class="tiles">
+      <div class="tile">
+        <b>R$ 3.000</b>
+        <span>Implantação — site, identidade visual e primeiro lote de conteúdo. 50% no início, 50% na entrega.</span>
       </div>
-      <div class="price-row">
-        <div>
-          <div class="label">Gestão mensal</div>
-          <div class="detail">Calendário editorial, atualização do site e prospecção contínua de marcas.</div>
-        </div>
-        <div class="amount">R$ 900 /mês</div>
+      <div class="tile">
+        <b>R$ 900<small>/mês</small></b>
+        <span>Gestão mensal — calendário editorial, atualização do site e prospecção contínua de marcas.</span>
       </div>
-      <div class="price-row total">
-        <div>
-          <div class="label">Comissão sobre publi fechada</div>
-          <div class="detail">Só sobre contratos novos trazidos pela Price Digital — nunca sobre renda que já é sua.</div>
-        </div>
-        <div class="amount">25%</div>
+      <div class="tile highlight">
+        <b>25%</b>
+        <span>Comissão só sobre publi nova fechada pela Price Digital — nunca sobre renda que já é sua.</span>
       </div>
     </div>
     <p class="note">Sem fidelidade mínima na gestão mensal. Cancelamento com 30 dias de aviso.</p>

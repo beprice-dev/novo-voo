@@ -11,31 +11,8 @@
     --accent: #a9793d;
     --accent-deep: #7c5a2e;
     --line: #dad2c0;
+    --card-shadow: rgba(30, 42, 56, 0.1);
     color-scheme: light;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #14181d;
-      --surface: #1b222b;
-      --ink: #ece7dd;
-      --ink-soft: #a6acb3;
-      --accent: #d2a25c;
-      --accent-deep: #efc377;
-      --line: #333b44;
-      color-scheme: dark;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --paper: #14181d;
-    --surface: #1b222b;
-    --ink: #ece7dd;
-    --ink-soft: #a6acb3;
-    --accent: #d2a25c;
-    --accent-deep: #efc377;
-    --line: #333b44;
-    color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
@@ -518,11 +495,12 @@
 
   .section-card {
     background: var(--surface);
-    border: 1px solid var(--line);
+    border: 1px solid var(--accent);
     border-radius: 10px;
     padding: 28px 24px;
-    border-bottom: 1px solid var(--line) !important;
+    border-bottom: 1px solid var(--accent) !important;
     margin-block: 8px;
+    box-shadow: 0 4px 16px var(--card-shadow);
   }
 
   footer {
